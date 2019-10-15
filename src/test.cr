@@ -8,13 +8,13 @@ module Test
     ENV["PORT"] ||= "8080"
     port = ENV["PORT"]
 
-    server = HTTP::Server.new(bind, port.to_i) do |context|
+    server = HTTP::Server.new do |context|
       context.response.content_type = "text/plain"
       context.response << "Hello world, got #{context.request.path}"
     end
 
     puts "Listening on http://#{bind}:#{port}"
-    server.listen
+    server.listen(port.to_i)
   end
 end
 
